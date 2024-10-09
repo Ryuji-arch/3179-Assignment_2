@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Vega Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+    <!-- External CSS File -->
+    <link href="Assignment_2.css" rel="stylesheet">
+    <title>Energy Production and Consumption</title>
+</head>
+<body>
+    <!-- Title -->
+    <h1 class="oswald-text">Energy Production and Consumption</h1>
+
+    <!-- Container for the Maps -->
+    <div class="container">
+        <!-- Container for the First Map -->
+        <div id="map" style="width: 785px; height: 500px;"></div>
+
+        <!-- Container for the Second Map -->
+        <div id="map2" style="width: 635px; height: 500px;"></div>
+    </div>
+
+    <!-- Container for the Area Chart -->
+    <div id="area-chart" style="width: 2000; height: 500px; margin-top: 50px;"></div>
+
+    <!-- Link to External JavaScript File -->
+    <script src="vega_lite_vis.js"></script> <!-- Link to the external JS file -->
+</body>
+</html>

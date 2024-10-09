@@ -1,0 +1,58 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Energy Consumption by Source Over the Years (TWh)",
+    "width": 800,
+    "height": 400,
+    "data": {
+      "url": "https://raw.githubusercontent.com/Ryuji-arch/3179-Week-10/main/energy-consumption-by-source.csv", 
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {
+        "fold": [
+          "Other renewables (TWh, substituted energy)",
+          "Biofuels (TWh, substituted energy)",
+          "Solar (TWh, substituted energy)",
+          "Wind (TWh, substituted energy)",
+          "Hydropower (TWh, substituted energy)",
+          "Nuclear (TWh, substituted energy)",
+          "Gas (TWh, substituted energy)",
+          "Oil (TWh, substituted energy)",
+          "Coal (TWh, substituted energy)",
+          "Traditional biomass (TWh, substituted energy)"
+        ],
+        "as": ["Energy Source", "TWh"]
+      }
+    ],
+    "mark": {
+      "type": "area",
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "axis": {"title": "Year"}
+      },
+      "y": {
+        "field": "TWh",
+        "type": "quantitative",
+        "stack": "zero", 
+        "axis": {"title": "Energy Consumption (TWh)"}
+      },
+      "color": {
+        "field": "Energy Source",
+        "type": "nominal",
+        "scale": {"scheme": "category20b"},
+        "legend": {"title": "Energy Sources"}
+      },
+      "tooltip": [
+        {"field": "Year", "type": "temporal", "title": "Year"},
+        {"field": "Energy Source", "type": "nominal", "title": "Energy Source"},
+        {"field": "TWh", "type": "quantitative", "title": "Consumption (TWh)"}
+      ]
+    },
+    "config": {
+      "area": {"opacity": 0.7}  
+    }
+  }
