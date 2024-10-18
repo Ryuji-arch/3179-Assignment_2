@@ -1,0 +1,113 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Per Capita Electricity Usage by Country",
+      "fontSize": 20,
+      "font": "Oswald",
+      "fontWeight": "bold",
+      "anchor": "middle",
+      "color": "#333"
+    },
+    "width": 700,
+    "height": 2000,
+    "data": {
+      "url": "https://raw.githubusercontent.com/Ryuji-arch/3179-Assignment_2/refs/heads/main/per-capita-energy-use.csv",
+      "format": {"type": "csv"}
+    },
+    "params": [
+      {
+        "name": "selected_country",
+        "value": "All",
+        "bind": {
+          "input": "select",
+          "options": [
+            "All", "Afghanistan", "Africa", "Albania", "Algeria", "American Samoa", "Angola", "Argentina",
+            "Armenia", "Australia", "Austria", "Azerbaijan", "Bahrain", "Bangladesh", "Barbados", "Belarus",
+            "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil",
+            "Canada", "Chile", "China", "Colombia", "Costa Rica", "Cuba", "Denmark", "Dominican Republic",
+            "Ecuador", "Egypt", "El Salvador", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Germany",
+            "Ghana", "Greece", "Guatemala", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran",
+            "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya",
+            "Kuwait", "Latvia", "Lebanon", "Lithuania", "Luxembourg", "Malaysia", "Malta", "Mexico", "Mongolia",
+            "Morocco", "Nepal", "Netherlands", "New Zealand", "Nigeria", "Norway", "Pakistan", "Panama",
+            "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Saudi Arabia", "Singapore",
+            "South Africa", "South Korea", "Spain", "Sri Lanka", "Sudan", "Sweden", "Switzerland", "Syria",
+            "Taiwan", "Tanzania", "Thailand", "Tunisia", "Turkey", "Ukraine", "United Arab Emirates", "United Kingdom",
+            "United States", "Uruguay", "Venezuela", "Vietnam", "Zambia", "Zimbabwe"
+          ],
+          "name": "Select Country: "
+        }
+      },
+      {
+        "name": "year_selection",
+        "value": 2020,
+        "bind": {
+          "input": "range",
+          "min": 1965,
+          "max": 2023,
+          "step": 1,
+          "name": "Select Year: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "selected_country === 'All' || datum.Entity === selected_country"
+      },
+      {
+        "filter": "datum.Year == year_selection"
+      }
+    ],
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "Primary_energy_consumption_per_capita",
+            "type": "quantitative",
+            "title": "Per Capita Electricity Usage (kWh)"
+          },
+          "y": {
+            "field": "Entity",
+            "type": "nominal",
+            "sort": "-x",
+            "axis": {"title": "Country"}
+          },
+          "tooltip": [
+            {"field": "Entity", "type": "nominal", "title": "Country"},
+            {"field": "Year", "type": "ordinal", "title": "Year"},
+            {
+              "field": "Primary_energy_consumption_per_capita",
+              "type": "quantitative",
+              "title": "Usage (kWh)"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "dx": 5,
+          "dy": -5,
+          "fontWeight": "bold",
+          "fontSize": 12,
+          "color": "black"
+        },
+        "transform": [
+          {
+            "filter": "datum.Entity === 'Qatar' || datum.Entity === 'Iceland' || datum.Entity === 'Bahrain' || datum.Entity === 'Norway' || datum.Entity === 'Canada' || datum.Entity === 'United States'"
+          }
+        ],
+        "encoding": {
+          "x": {"field": "Primary_energy_consumption_per_capita", "type": "quantitative"},
+          "y": {"field": "Entity", "type": "nominal"},
+          "text": {"field": "Entity", "type": "nominal"}
+        }
+      }
+    ],
+    "config": {
+      "axis": {"labelFontSize": 12, "titleFontSize": 14},
+      "legend": {"labelFontSize": 12, "titleFontSize": 14}
+    }
+  }  

@@ -1,58 +1,145 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Energy Consumption by Source Over the Years (TWh)",
-    "width": 800,
-    "height": 400,
-    "data": {
-      "url": "https://raw.githubusercontent.com/Ryuji-arch/3179-Week-10/main/energy-consumption-by-source.csv", 
-      "format": {"type": "csv"}
-    },
-    "transform": [
-      {
-        "fold": [
-          "Other renewables (TWh, substituted energy)",
-          "Biofuels (TWh, substituted energy)",
-          "Solar (TWh, substituted energy)",
-          "Wind (TWh, substituted energy)",
-          "Hydropower (TWh, substituted energy)",
-          "Nuclear (TWh, substituted energy)",
-          "Gas (TWh, substituted energy)",
-          "Oil (TWh, substituted energy)",
-          "Coal (TWh, substituted energy)",
-          "Traditional biomass (TWh, substituted energy)"
-        ],
-        "as": ["Energy Source", "TWh"]
-      }
-    ],
-    "mark": {
-      "type": "area",
-      "tooltip": true
-    },
-    "encoding": {
-      "x": {
-        "field": "Year",
-        "type": "temporal",
-        "axis": {"title": "Year"}
-      },
-      "y": {
-        "field": "TWh",
-        "type": "quantitative",
-        "stack": "zero", 
-        "axis": {"title": "Energy Consumption (TWh)"}
-      },
-      "color": {
-        "field": "Energy Source",
-        "type": "nominal",
-        "scale": {"scheme": "category20b"},
-        "legend": {"title": "Energy Sources"}
-      },
-      "tooltip": [
-        {"field": "Year", "type": "temporal", "title": "Year"},
-        {"field": "Energy Source", "type": "nominal", "title": "Energy Source"},
-        {"field": "TWh", "type": "quantitative", "title": "Consumption (TWh)"}
-      ]
-    },
-    "config": {
-      "area": {"opacity": 0.7}  
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Energy Consumption by Source Over the Years (TWh)",
+    "fontSize": 24,
+    "font": "Oswald",
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "color": "#333"
+  },
+  "width": 650,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Ryuji-arch/3179-Week-10/main/energy-consumption-by-source.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "fold": [
+        "Other renewables (TWh, substituted energy)",
+        "Biofuels (TWh, substituted energy)",
+        "Solar (TWh, substituted energy)",
+        "Wind (TWh, substituted energy)",
+        "Hydropower (TWh, substituted energy)",
+        "Nuclear (TWh, substituted energy)",
+        "Gas (TWh, substituted energy)",
+        "Oil (TWh, substituted energy)",
+        "Coal (TWh, substituted energy)",
+        "Traditional biomass (TWh, substituted energy)"
+      ],
+      "as": ["Energy Source", "TWh"]
     }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "tooltip": true,
+        "opacity": 0.7
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "axis": {"title": "Year"}
+        },
+        "y": {
+          "field": "TWh",
+          "type": "quantitative",
+          "stack": "zero",
+          "axis": {"title": "Energy Consumption (TWh)"}
+        },
+        "color": {
+          "field": "Energy Source",
+          "type": "nominal",
+          "scale": {"scheme": "category20b"},
+          "legend": {"title": "Energy Sources"}
+        },
+        "tooltip": [
+          {"field": "Year", "type": "temporal", "title": "Year"},
+          {"field": "Energy Source", "type": "nominal", "title": "Energy Source"},
+          {"field": "TWh", "type": "quantitative", "title": "Consumption (TWh)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "red",
+        "strokeWidth": 3,
+        "strokeDash": [6, 2]
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "datum": {"year": 1960}
+        },
+        "y": {"value": -20},
+        "y2": {"value": 430}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -200,
+        "dy": -100,
+        "fontWeight": "bold",
+        "fontSize": 12,
+        "color": "red"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "datum": {"year": 1960}
+        },
+        "y": {"datum": 100000},
+        "text": {"value": "Significant Oil Increase (1960)"}
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "blue",
+        "strokeWidth": 3,
+        "strokeDash": [6, 2]
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "datum": {"year": 1983}
+        },
+        "y": {"value": -20},
+        "y2": {"value": 430}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -150,
+        "dy": -80,
+        "fontWeight": "bold",
+        "fontSize": 12,
+        "color": "blue"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "datum": {"year": 1983}
+        },
+        "y": {"datum": 50000},
+        "text": {"value": "Significant Coal and Gas Increase (1983)"}
+      }
+    }
+  ],
+  "config": {
+    "axis": {"labelFontSize": 12, "titleFontSize": 14},
+    "legend": {"labelFontSize": 12, "titleFontSize": 14}
   }
+}

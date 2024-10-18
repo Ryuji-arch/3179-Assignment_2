@@ -1,0 +1,103 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Change in Households Using Solid Fuels (1980-2010)",
+    "fontSize": 20,
+    "font": "Oswald",
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "color": "#333"
+  },
+  "width": 700,
+  "height": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Ryuji-arch/3179-Assignment_2/refs/heads/main/population-using-solid-fuels-for-cooking.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"filter": "datum.Year == 1980 || datum.Year == 2010"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": true,
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "axis": {"title": "Year"}
+        },
+        "y": {
+          "field": "Households using solid fuels as the main cooking fuel",
+          "type": "quantitative",
+          "axis": {"title": "Households Using Solid Fuels (%)"}
+        },
+        "color": {
+          "field": "Entity",
+          "type": "nominal",
+          "legend": {"title": "Region"}
+        },
+        "tooltip": [
+          {"field": "Entity", "type": "nominal", "title": "Region"},
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {
+            "field": "Households using solid fuels as the main cooking fuel",
+            "type": "quantitative",
+            "title": "Solid Fuel Usage (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -10,
+        "fontWeight": "bold",
+        "fontSize": 12,
+        "color": "black"
+      },
+      "transform": [
+        {"filter": "datum.Entity === 'Southeast Asia' && datum.Year == 2010"}
+      ],
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "Households using solid fuels as the main cooking fuel",
+          "type": "quantitative"
+        },
+        "text": {"value": "Southeast Asia"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -10,
+        "fontWeight": "bold",
+        "fontSize": 12,
+        "color": "black"
+      },
+      "transform": [
+        {"filter": "datum.Entity === 'Africa' && datum.Year == 2010"}
+      ],
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "Households using solid fuels as the main cooking fuel",
+          "type": "quantitative"
+        },
+        "text": {"value": "Africa"}
+      }
+    }
+  ],
+  "config": {
+    "axis": {"labelFontSize": 12, "titleFontSize": 14},
+    "legend": {"labelFontSize": 12, "titleFontSize": 14}
+  }
+}

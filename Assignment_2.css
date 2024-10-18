@@ -1,0 +1,116 @@
+/* Ensure body takes up full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+/* Title Container */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+/* Text Container */
+.text-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Styling for Title Image */
+.title-image {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+}
+
+/* Title Text Styling */
+.oswald-text {
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: #333;
+    margin: 0;
+}
+
+/* Graph Wrapper */
+.graph-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Constrain max width */
+    padding: 20px;
+}
+
+/* Graph Container */
+.graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto; /* Adjusts spacing between each graph section */
+    padding: 20px;
+    width: 80%; /* Adjust width to align graph sections neatly */
+    max-width: 1200px;
+    border: 3px solid black; /* Black border for edges */
+    border-radius: 10px; /* Optional: Rounded corners */
+    background-color: white; /* Background color inside the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Map and Chart Styling */
+#map, #map2, #area-chart, #scatter-plot, #slope-chart, #bar-chart {
+    width: 90%;
+    max-width: 1000px;
+    height: 500px;
+    margin: 20px 0;
+}
+
+/* Map Text Styling */
+.map-text {
+    max-width: 800px;
+    text-align: center;
+    margin-top: 40px;
+    z-index: 1;
+    font-size: 16px;
+    line-height: 1.6; /* Improves readability */
+}
+
+.map-text_1 {
+    max-width: 800px;
+    text-align: center;
+    margin-top: 190px;
+    z-index: 1;
+    font-size: 16px;
+    line-height: 1.6; /* Improves readability */
+}
+
+.map-text_2 {
+    max-width: 800px;
+    text-align: center;
+    margin-top: 1650px;
+    z-index: 1;
+    font-size: 16px;
+    line-height: 1.6; /* Improves readability */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .graph-container {
+        width: 100%;
+    }
+
+    #map, #map2, #area-chart, #scatter-plot, #slope-chart, #bar-chart {
+        width: 100%;
+    }
+}

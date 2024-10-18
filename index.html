@@ -3,33 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Production and Consumption</title>
+
     <!-- Vega Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-    <!-- Google Fonts Link -->
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet">
-    <!-- External CSS File -->
-    <link href="Assignment_2.css" rel="stylesheet">
-    <title>Energy Production and Consumption</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="Assignment_2.css">
 </head>
+
 <body>
-    <!-- Title -->
-    <h1 class="oswald-text">Energy Production and Consumption</h1>
 
-    <!-- Container for the Maps -->
-    <div class="container">
-        <!-- Container for the First Map -->
-        <div id="map" style="width: 785px; height: 500px;"></div>
-
-        <!-- Container for the Second Map -->
-        <div id="map2" style="width: 635px; height: 500px;"></div>
+    <!-- Title Section -->
+    <div class="title-container">
+        <img src="Screenshot_2024-10-16.png" alt="Logo" class="title-image">
+        <h1 class="oswald-text">Energy Access and Consumption</h1>
+        <img src="Screenshot_2024-10-17.png" alt="Logo" class="title-image">
     </div>
 
-    <!-- Container for the Area Chart -->
-    <div id="area-chart" style="width: 2000; height: 500px; margin-top: 50px;"></div>
+    <div class="text-container">
+        <p class="hook-text">
+            Energy access and sustainable consumption are among the key challenges in today’s world. While access to reliable electricity is essential for economic growth and improving quality of life, millions still lack access to sustainable energy sources. At the same time, growing energy consumption presents environmental challenges, including rising emissions and resource depletion. The visualizations below explore the disparities in electricity access, evolving energy consumption patterns, and the global transition towards cleaner, more sustainable energy solutions.
+        </p>
+    </div>
 
-    <!-- Link to External JavaScript File -->
-    <script src="vega_lite_vis.js"></script> <!-- Link to the external JS file -->
+    <!-- Each graph section wrapped for alignment -->
+    <div class="graph-wrapper">
+        <div class="graph-container">
+            <div id="map"></div>
+            <p class="map-text">This map visualizes the year-over-year percentage change in primary energy consumption across different countries. The colors reflect variations in consumption patterns, with warmer hues (reds) indicating a decrease and cooler hues (blues) showing an increase in energy use.
+                The map highlights regional disparities in energy usage. Countries experiencing significant reductions may reflect economic slowdowns, energy crises, or policy-driven shifts towards renewable energy. In contrast, countries with marked increases could be undergoing industrial growth, population surges, or expanded infrastructure.
+            </p>
+        </div>
+
+        <div class="graph-container">
+            <div id="map2"></div>
+            <p class="map-text">This map visualizes global access to electricity, highlighting disparities in energy availability across countries. Darker shades of blue represent higher access to electricity, often near or at 100%, indicating well-developed power infrastructure. Lighter shades reveal countries with lower electricity access, emphasizing regions where large portions of the population still rely on alternative, often unsustainable, sources for energy.
+                Sub-Saharan Africa, parts of South Asia, and some other developing regions show lower access, reflecting persistent challenges related to infrastructure development, economic constraints, and political instability. On the other hand, Europe, North America, and much of East Asia demonstrate nearly universal electricity access, showcasing well-established energy networks.
+            </p>
+        </div>
+
+        <div class="graph-container">
+            <div id="area-chart"></div>
+            <p class="map-text">This visualization shows the global rise in energy consumption from the 1800s to the present, highlighting major shifts in energy sources. 
+                Pre-1960: Consumption was relatively stable, dominated by coal during the industrial revolution.
+                1960 Boom: A rapid increase in oil use drove a surge in energy demand, marked by the red vertical line.
+                Modern Trends: Fossil fuels remain dominant, but renewable sources like hydro, solar, and wind are growing steadily.
+            </p>
+        </div>
+
+        <div class="graph-container">
+            <div id="scatter-plot"></div>
+            <p class="map-text_1">This scatter plot visualizes the relationship between energy consumption and GDP per capita, highlighting the energy intensity of different countries. The size of each circle represents the total energy consumption, while the color indicates the region. 
+                The plot shows that higher GDP per capita generally correlates with increased energy consumption, reflecting the energy demands of industrialized economies. However, variations in energy intensity suggest differences in efficiency, energy policies, and economic structures across countries. Developing nations with lower GDP per capita may have lower energy consumption but could face challenges in meeting growing energy needs sustainably
+            </p>
+        </div>
+
+        <div class="graph-container">
+            <div id="slope-chart"></div>
+            <p class="map-text_1">This slope chart visualizes the transition from fossil fuels to renewable energy sources in different countries. The lines represent the changing energy mix over time, with fossil fuels (coal, oil, gas) on the left and renewables (hydro, solar, wind) on the right. The chart highlights the global shift towards cleaner energy sources, driven by environmental concerns, policy changes, and technological advancements. While fossil fuels remain dominant, the increasing adoption of renewables reflects a growing commitment to sustainability and reducing carbon emissions. Countries with steeper slopes demonstrate faster transitions, often due to ambitious renewable energy targets or favorable geographic conditions.
+            </p>
+        </div>
+
+        <div class="graph-container">
+            <div id="bar-chart"></div>
+            <p class="map-text_2">This bar chart visualizes the variation in electricity consumption per capita across countries. Key observations include: Top Consumers: Countries like Qatar, Iceland, and Bahrain have the highest per capita electricity consumption. These nations often have small populations, energy-intensive industries, or extreme climates, leading to higher energy usage. Wealthier Nations: Developed countries such as Norway, Canada, and United States are also prominent in the upper part of the chart, highlighting the strong correlation between economic development and electricity consumption. Developing and Low-Consumption Countries: The chart shows a downward trend toward countries with relatively lower consumption per capita, typically in regions with economic constraints or limited infrastructure. This visualization underscores the disparity in electricity consumption across the globe, reflecting how economic status, population size, industry, and geography influence energy usage. 
+            </p>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="vega_lite_vis.js"></script>
 </body>
 </html>

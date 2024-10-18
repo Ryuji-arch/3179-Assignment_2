@@ -1,40 +1,75 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": {
-      "text": "Annual Energy Comsumption (%) by Country",
-      "fontSize": 24,
-      "font": "Oswald",
-      "fontWeight": "bold",
-      "anchor": "middle",
-      "color": "#333"
-},
-  "width": 600,
+  "title": {
+    "text": "Annual Energy Consumption Change (%) by Country",
+    "fontSize": 24,
+    "font": "Oswald",
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "color": "#333"
+  },
+  "width": 700,
   "height": 400,
   "params": [
     {
       "name": "year",
-      "value": 2020,
+      "value": 2021,
       "bind": {
         "input": "range",
         "min": 1966,
         "max": 2023,
         "step": 1,
-        "name": "Select the year:"
+        "name": "Select Year: "
+      }
+    },
+    {
+      "name": "translateX",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": -400,
+        "max": 400,
+        "step": 10,
+        "name": "Move Left/Right: "
+      }
+    },
+    {
+      "name": "translateY",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": -200,
+        "max": 200,
+        "step": 10,
+        "name": "Move Top/Bottom: "
+      }
+    },
+    {
+      "name": "zoom",
+      "value": 140,
+      "bind": {
+        "input": "range",
+        "min": 100,
+        "max": 800,
+        "step": 10,
+        "name": "Zoom Level: "
       }
     }
   ],
+  "projection": {
+    "type": "equalEarth",
+    "scale": {"signal": "zoom"},
+    "translate": [
+      {"signal": "400 + translateX"},
+      {"signal": "200 + translateY"}
+    ]
+  },
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/Ryuji-arch/3179/refs/heads/main/ne_110m_admin_0_countries.json",
         "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
-      "transform": [
-        {
-          "calculate": "'Data is not available in ' + datum.properties.NAME",
-          "as": "note"
-        }
-      ],
       "mark": {
         "type": "geoshape",
         "fill": "#ddd",
@@ -42,7 +77,7 @@
         "strokeWidth": 1
       },
       "encoding": {
-        "tooltip": {"field": "note"}
+        "tooltip": {"field": "properties.NAME", "type": "nominal", "title": "Country"}
       }
     },
     {
@@ -70,16 +105,27 @@
           "field": "Annual_change_in_primary_energy_consumption",
           "type": "quantitative",
           "title": "Change from Previous Year (%)",
-          "scale": {"scheme": "blues"}
+          "scale": {
+            "scheme": "redblue",
+            "domainMid": 0,
+            "reverse": true
+          }
         },
         "tooltip": [
           {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-          {"field": "Annual_change_in_primary_energy_consumption", "type": "quantitative", "title": "Percentage Change"},
+          {
+            "field": "Annual_change_in_primary_energy_consumption",
+            "type": "quantitative",
+            "title": "Percentage Change"
+          },
           {"field": "Year", "type": "quantitative", "title": "Year"}
         ]
       }
     }
   ],
-  "projection": {"type": "equalEarth"},
-  "config": {}
+  "config": {
+    "view": {"stroke": "transparent"},
+    "legend": {"labelFontSize": 12, "titleFontSize": 14},
+    "axis": {"labelFontSize": 12, "titleFontSize": 14}
+  }
 }

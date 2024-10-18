@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Access to Electricity vs GDP per Capita",
+    "fontSize": 20,
+    "font": "Oswald",
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "color": "#333"
+  },
+  "width": 700,
+  "height": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Ryuji-arch/3179-Week-10/refs/heads/main/access_to_electricity_gdp.csv", 
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "year_selection",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 1990,
+        "max": 2021,
+        "step": 1,
+        "name": "Select Year"
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Year == year_selection"}
+  ],
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "x": {
+          "field": "GDP_per_capita",
+          "type": "quantitative",
+          "title": "GDP per capita"
+        },
+        "y": {
+          "field": "Access_to_electricity",
+          "type": "quantitative",
+          "title": "Access to electricity"
+        },
+        "tooltip": [
+          {"field": "Entity", "type": "nominal", "title": "Country"},
+          {"field": "Access_to_electricity", "type": "quantitative", "title": "Access to Electricity (%)"},
+          {"field": "GDP_per_capita", "type": "quantitative", "title": "GDP per Capita"}
+        ],
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {"scheme": "category10"},
+          "legend": {"title": "Continent"}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -10,
+        "fontWeight": "bold",
+        "fontSize": 12,
+        "color": "black"
+      },
+      "transform": [
+        {
+          "filter": "datum.Entity === 'Zambia' || datum.Entity === 'Singapore'"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "GDP_per_capita", "type": "quantitative"},
+        "y": {"field": "Access_to_electricity", "type": "quantitative"},
+        "text": {"field": "Entity", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "axis": {"labelFontSize": 12, "titleFontSize": 14},
+    "legend": {"labelFontSize": 12, "titleFontSize": 14}
+  }
+}
+
